@@ -1,0 +1,165 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+p {
+    margin: 10px 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    text-decoration: underline;
+    color: #e0e0e0; /* Slightly lighter on hover */
+}
+
+/* Menu Icon */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #f8f9fa;
+    width: 200px;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: -220px;  /* Hidden initially */
+    transition: left 0.3s; /* Smooth transition */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Content Area */
+.content {
+    display: flex;
+    margin-left: 220px; /* Space for the sidebar */
+    transition: margin-left 0.3s; /* Smooth transition */
+}
+
+main {
+    padding: 20px;
+    width: 100%;
+}
+
+.profile-details, table {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Spacing between sections */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007BFF; /* Header background */
+    color: white;
+}
+
+/* Status Styles */
+.status-pending {
+    color: orange; /* Color for pending status */
+}
+
+.status-reviewed {
+    color: green; /* Color for reviewed status */
+}
+
+/* Footer */
+footer {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative; /* Changed to relative for proper placement */
+    margin-top: 20px; /* Spacing above footer */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .sidebar {
+        width: 200px;
+        height: 100%;
+        top: 0;
+        left: -220px;
+    }
+
+    .content {
+        margin-left: 0; /* Collapse margin on mobile */
+    }
+
+    .content.main {
+        padding: 10px; /* Reduce padding on mobile */
+    }
+
+    table {
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+}

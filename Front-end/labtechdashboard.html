@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Technician Dashboard</title>
+    <link rel="stylesheet" href="labtech.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Lab Technician Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#patients-section">Patients</a></li>
+                <li><a href="#requests-section">Test Requests</a></li>
+                <li><a href="#results-section">Test Results</a></li>
+                <li><a href="#profile-section">Profile</a></li>
+                <li><a href="login.html" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon" id="menuToggle">&#9776;</div>
+    </header>
+
+    <div class="content">
+        <!-- Sidebar (Initially hidden) -->
+        <aside class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="#patients-section">Patients</a></li>
+                <li><a href="#requests-section">Test Requests</a></li>
+                <li><a href="#results-section">Test Results</a></li>
+                <li><a href="#profile-section">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Profile Section -->
+            <section id="profile-section">
+                <h2>Your Profile</h2>
+                <div class="profile-details">
+                    <p><strong>Name:</strong> Alex Brown</p>
+                    <p><strong>Email:</strong> alexbrown@example.com</p>
+                    <p><strong>Phone:</strong> 123-456-7890</p>
+                    <button>Edit Profile</button>
+                </div>
+            </section>
+            
+            <!-- Patients Section -->
+            <section id="patients-section">
+                <h2>Patients</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>johndoe@example.com</td>
+                            <td>123-456-7890</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>janesmith@example.com</td>
+                            <td>987-654-3210</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Test Requests Section -->
+            <section id="requests-section">
+                <h2>Test Requests</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Patient Name</th>
+                            <th>Test Type</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>123</td>
+                            <td>John Doe</td>
+                            <td>Blood Test</td>
+                            <td><span class="status-pending">Pending</span></td>
+                            <td><button class="process-btn">Process</button></td>
+                        </tr>
+                        <tr>
+                            <td>124</td>
+                            <td>Jane Smith</td>
+                            <td>COVID-19 Test</td>
+                            <td><span class="status-pending">Pending</span></td>
+                            <td><button class="process-btn">Process</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Test Results Section -->
+            <section id="results-section">
+                <h2>Test Results</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Result ID</th>
+                            <th>Patient Name</th>
+                            <th>Test Type</th>
+                            <th>Result</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>John Doe</td>
+                            <td>Blood Test</td>
+                            <td>Normal</td>
+                            <td><span class="status-reviewed">Reviewed</span></td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Jane Smith</td>
+                            <td>COVID-19 Test</td>
+                            <td>Negative</td>
+                            <td><span class="status-reviewed">Reviewed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            
+        </main>
+    </div>
+
+    <footer>
+        <p>Contact us: 123-456-7890 | support@healthlab.com</p>
+    </footer>
+
+    <script src="labtech.js"></script>
+</body>
+</html>

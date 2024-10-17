@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="doctor.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Doctor Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#patients-section">Patients</a></li>
+                <li><a href="#request-section">Request Test</a></li>
+                <li><a href="#results-section">Test Results</a></li>
+                <li><a href="#appointments-section">Upcoming Appointments</a></li>
+                <li><a href="#profile-section">Profile</a></li>
+                <li><a href="login.html" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="menu-icon" id="menuToggle">&#9776;</div>
+    </header>
+
+    <div class="content">
+        <!-- Sidebar (Initially hidden) -->
+        <aside class="sidebar" id="sidebar">
+            <ul>
+                <li><a href="#patients-section">Patients</a></li>
+                <li><a href="#request-section">Request Test</a></li>
+                <li><a href="#results-section">Test Results</a></li>
+                <li><a href="#appointments-section">Upcoming Appointments</a></li>
+                <li><a href="#profile-section">Profile</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+
+            <!-- Profile Section -->
+            <section id="profile-section">
+                <h2>Your Profile</h2>
+                <div class="profile-details">
+                    <p><strong>Name:</strong> Dr. Sarah Johnson</p>
+                    <p><strong>Email:</strong> sarahjohnson@example.com</p>
+                    <p><strong>Phone:</strong> 987-654-3210</p>
+                    <button>Edit Profile</button>
+                </div>
+            </section>
+            
+            <!-- Patients Section -->
+            <section id="patients-section">
+                <h2>Your Patients</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Email</th>
+                            <th>Test Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>johndoe@example.com</td>
+                            <td>Pending</td>
+                            <td><button class="view-btn" data-patient-id="123">View</button></td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>janesmith@example.com</td>
+                            <td>Completed</td>
+                            <td><button class="view-btn" data-patient-id="124">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Request Test Section -->
+            <section id="request-section">
+                <h2>Request Test for Patient</h2>
+                <form id="requestTestForm">
+                    <label for="patientName">Patient Name:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+
+                    <label for="testType">Test Type:</label>
+                    <input type="text" id="testType" name="testType" required>
+
+                    <label for="testDate">Date:</label>
+                    <input type="date" id="testDate" name="testDate" required>
+
+                    <button type="submit">Submit Test Request</button>
+                </form>
+            </section>
+
+            <!-- Test Results Section -->
+            <section id="results-section">
+                <h2>Test Results to Review</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Result ID</th>
+                            <th>Patient Name</th>
+                            <th>Test Type</th>
+                            <th>Result</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>John Doe</td>
+                            <td>Blood Test</td>
+                            <td>Normal</td>
+                            <td><button class="approve-btn" data-request-id="1001">Approve</button></td>
+                        </tr>
+                        <tr>
+                            <td>1002</td>
+                            <td>Jane Smith</td>
+                            <td>COVID-19 Test</td>
+                            <td>Negative</td>
+                            <td><button class="approve-btn" data-request-id="1002">Approve</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Upcoming Appointments Section -->
+            <section id="appointments-section">
+                <h2>Upcoming Appointments</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        <!-- Appointment rows will be dynamically populated -->
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal for viewing patient details -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Patient Details</h2>
+            <p><strong>Name:</strong> <span id="modalPatientName"></span></p>
+            <p><strong>Email:</strong> <span id="modalPatientEmail"></span></p>
+            <p><strong>Test Status:</strong> <span id="modalTestStatus"></span></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact us: 123-456-7890 | support@healthlab.com</p>
+    </footer>
+
+    <script src="doctor.js"></script>
+</body>
+</html>

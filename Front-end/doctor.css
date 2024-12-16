@@ -4,10 +4,26 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    
+}
+
+button {
+    padding: 7px;
+    background-color: #2768ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    margin-left: 7px;
+}
+
+button:hover {
+    background-color: #1841f7;
 }
 
 h1, h2 {
-    color: #333;
+    color: #0b0b0b;
 }
 
 p {
@@ -49,44 +65,10 @@ p {
     color: white;
 }
 
-/* Sidebar */
-.sidebar {
-    background-color: #f8f9fa;
-    width: 200px;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    left: -220px;  /* Hidden initially */
-    transition: left 0.3s; /* Smooth transition */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.sidebar ul li a:hover {
-    text-decoration: underline;
-    color: #0056b3; /* Darker blue on hover */
-}
-
 /* Content Area */
 .content {
     display: flex;
-    margin-left: 220px; /* Space for the sidebar */
+    margin: 10px; /* Space for the sidebar */
     transition: margin-left 0.3s; /* Smooth transition */
 }
 
@@ -152,15 +134,24 @@ footer {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-.close {
+input[type="text"], input[type="email"], input[type="password"], select {
+    width: 50%;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.close-btn {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close-btn:hover,
+.close-btn:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -190,4 +181,5 @@ footer {
     table {
         font-size: 14px; /* Smaller font size for mobile */
     }
+    
 }

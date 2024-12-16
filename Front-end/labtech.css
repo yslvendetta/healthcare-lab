@@ -6,8 +6,24 @@ body {
     background-color: #f4f4f4;
 }
 
+button {
+    padding: 7px;
+    background-color: #2768ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #1841f7;
+}
+
 h1, h2 {
-    color: #333;
+    color: #030303;
 }
 
 p {
@@ -49,44 +65,11 @@ p {
     color: white;
 }
 
-/* Sidebar */
-.sidebar {
-    background-color: #f8f9fa;
-    width: 200px;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    left: -220px;  /* Hidden initially */
-    transition: left 0.3s; /* Smooth transition */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.sidebar ul li a:hover {
-    text-decoration: underline;
-    color: #0056b3; /* Darker blue on hover */
-}
 
 /* Content Area */
 .content {
     display: flex;
-    margin-left: 220px; /* Space for the sidebar */
+    margin-left: 10px; /* Space for the sidebar */
     transition: margin-left 0.3s; /* Smooth transition */
 }
 

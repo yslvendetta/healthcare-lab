@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +33,9 @@
             <section id="profile-section">
                 <h2>Your Profile</h2>
                 <div class="profile-details">
-                    <p><strong>Name:</strong> <span id="profileName">John Doe</span></p>
-                    <p><strong>Email:</strong> <span id="profileEmail">johndoe@example.com</span></p>
-                    <p><strong>Phone:</strong> <span id="profilePhone">123-456-7890</span></p>
+                    <p><strong>Name:</strong> <span id="profileName"><?php echo htmlspecialchars($name); ?></span></p>
+                    <p><strong>Email:</strong> <span id="profileEmail"><?php echo htmlspecialchars($email); ?></span></p>
+                    <p><strong>Phone:</strong> <span id="profilePhone"><?php echo htmlspecialchars($phone); ?></span></p>
                     <button id="updateProfileBtn">Update Profile</button>
                 </div>
             </section>
@@ -74,20 +75,20 @@
         </main>
     </div>
 
-    <!-- Modal for Profile Update -->
+    <!-- Profile Update Modal -->
     <div id="profileModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeModal">&times;</span>
             <h2>Update Profile</h2>
             <form id="updateProfileForm">
                 <label for="newName">Name:</label>
-                <input type="text" id="newName" name="newName" required>
+                <input type="text" id="newName" name="newName" value="<?php echo $name; ?>" required>
 
                 <label for="newEmail">Email:</label>
-                <input type="email" id="newEmail" name="newEmail" required>
+                <input type="email" id="newEmail" name="newEmail" value="<?php echo $email; ?>" required>
 
                 <label for="newPhone">Phone:</label>
-                <input type="tel" id="newPhone" name="newPhone" required>
+                <input type="tel" id="newPhone" name="newPhone" value="<?php echo $phone; ?>" required>
 
                 <button type="submit">Update</button>
             </form>

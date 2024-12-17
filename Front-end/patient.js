@@ -1,30 +1,118 @@
 // Logout functionality
+
+// Fetch user information after login (using token stored in localStorage)
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'login.html'; // Redirect to login if no token
+        return;
+    }
+
+    // Fetch user profile from the server (assuming an API endpoint for this)
+    fetch('http://localhost/MedLab/Back-end/patientprofile.php', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+          // Populate dashboard with user data
+          document.getElementById('profileName').textContent = `${data.profile.firstName} ${data.profile.lastName}`;
+            document.getElementById('profileEmail').textContent = data.profile.email;
+            document.getElementById('profilePhone').textContent = data.profile.phone;
+        } else {
+            alert('Failed to load profile information: ' + data.message);
+            window.location.href = 'login.html'; // Redirect to login if profile fails
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching profile:', error);
+        alert('An error occurred while fetching your profile.');
+        window.location.href = 'login.html';
+    });
+});
+
+// Logout button action
 document.getElementById('logoutBtn')?.addEventListener('click', () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     alert('You have logged out.');
+    window.location.href = 'login.html'; // Redirect to login page after logout
 });
 
-// Request new test button action
-document.getElementById('testRequestForm')?.addEventListener('submit', (event) => {
+// Profile update modal functionality
+const profileModal = document.getElementById('profileModal');
+const updateProfileBtn = document.getElementById('updateProfileBtn');
+const closeModal = document.getElementById('closeModal');
+
+updateProfileBtn?.addEventListener('click', () => {
+    profileModal.style.display = 'block'; // Show modal
+});
+
+closeModal?.addEventListener('click', () => {
+    profileModal.style.display = 'none'; // Hide modal
+    document.getElementById('updateProfileForm').reset(); // Reset form
+});
+
+// Update profile logic
+document.getElementById('updateProfileForm')?.addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    // Get values from the form
-    const patientName = document.getElementById('patientName').value;
-    const testType = document.getElementById('testType').value;
+    const newName = document.getElementById('newName').value;
+    const newEmail = document.getElementById('newEmail').value;
+    const newPhone = document.getElementById('newPhone').value;
 
-    // Create a new row in the test results table
-    const testResultsTableBody = document.querySelector('#testResultsTable tbody');
-    const newRow = testResultsTableBody.insertRow();
-    newRow.innerHTML = `
-        <td>${testType}</td>
-        <td>${new Date().toLocaleDateString()}</td>
-        <td>Pending</td>
-        <td>Results will be available soon</td>
-    `;
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('You must be logged in to update your profile');
+        return;
+    }
 
-    // Reset the form for new input
-    document.getElementById('testRequestForm').reset();
+    // Send updated profile to the server (assuming an API endpoint for updating the profile)
+    fetch('http://localhost/MedLab/Back-end/patientupdateprofile.php', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: newName,
+            email: newEmail,
+            phone: newPhone,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update the profile details on the dashboard
+            document.getElementById('profileName').textContent = newName;
+            document.getElementById('profileEmail').textContent = newEmail;
+            document.getElementById('profilePhone').textContent = newPhone;
+
+            profileModal.style.display = 'none'; // Hide modal
+            document.getElementById('updateProfileForm').reset(); // Reset form
+        } else {
+            alert('Failed to update profile');
+        }
+    })
+    .catch(error => {
+        console.error('Error updating profile:', error);
+        alert('An error occurred while updating your profile.');
+    });
+});
+
+// Toggle sidebar visibility
+const sidebar = document.getElementById('sidebar');
+const menuToggle = document.getElementById('menuToggle');
+
+menuToggle?.addEventListener('click', () => {
+    if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-220px';  // Hide sidebar
+    } else {
+        sidebar.style.left = '0px';  // Show sidebar
+    }
 });
 
 // Appointment scheduling
@@ -62,104 +150,6 @@ document.getElementById('generateReportBtn')?.addEventListener('click', () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-});
-
-// Toggle sidebar visibility
-const sidebar = document.getElementById('sidebar');
-const menuToggle = document.getElementById('menuToggle');
-
-menuToggle?.addEventListener('click', () => {
-    if (sidebar.style.left === '0px') {
-        sidebar.style.left = '-220px';  // Hide sidebar
-    } else {
-        sidebar.style.left = '0px';  // Show sidebar
-    }
-});
-
-// Profile update modal functionality
-const profileModal = document.getElementById('profileModal');
-const updateProfileBtn = document.getElementById('updateProfileBtn');
-const closeModal = document.getElementById('closeModal');
-
-updateProfileBtn?.addEventListener('click', () => {
-    profileModal.style.display = 'block'; // Show modal
-});
-
-closeModal?.addEventListener('click', () => {
-    profileModal.style.display = 'none'; // Hide modal
-    document.getElementById('updateProfileForm').reset(); // Reset form
-});
-
-// Update profile logic
-document.getElementById('updateProfileForm')?.addEventListener('submit', (event) => {
-    event.preventDefault(); // Prevent default form submission
-
-    const newName = document.getElementById('newName').value;
-    const newEmail = document.getElementById('newEmail').value;
-    const newPhone = document.getElementById('newPhone').value;
-
-    // Update profile details on the dashboard
-    document.getElementById('profileName').textContent = newName;
-    document.getElementById('profileEmail').textContent = newEmail;
-    document.getElementById('profilePhone').textContent = newPhone;
-
-    profileModal.style.display = 'none'; // Hide modal
-    document.getElementById('updateProfileForm').reset(); // Reset form
-});
-
-// Schedule Appointment button action
-const appointmentModal = document.getElementById('appointmentModal');
-document.getElementById('scheduleAppointmentBtn')?.addEventListener('click', () => {
-    appointmentModal.style.display = 'block';
-});
-
-// Close appointment modal
-document.getElementById('closeAppointmentModal')?.addEventListener('click', () => {
-    appointmentModal.style.display = 'none';
-});
-
-// Handle scheduling appointment
-document.getElementById('scheduleAppointmentForm')?.addEventListener('submit', (event) => {
-    event.preventDefault(); // Prevent form submission
-    const date = document.getElementById('appointmentDate').value;
-    const time = document.getElementById('appointmentTime').value;
-    const appointmentDateTime = `${date} at ${time}`;
-    
-    // Display confirmation message
-    document.getElementById('appointmentDateTime').textContent = appointmentDateTime;
-    document.getElementById('appointmentConfirmation').style.display = 'block';
-    
-    // Close the appointment modal
-    appointmentModal.style.display = 'none';
-
-    // Reset the form
-    document.getElementById('scheduleAppointmentForm').reset();
-});
-
-// Download report button action
-document.getElementById('downloadReportBtn')?.addEventListener('click', () => {
-    const testResults = [
-        { test: 'Blood Test', date: '2024-10-01', status: 'Completed', result: 'Normal' },
-        { test: 'X-Ray', date: '2024-10-05', status: 'Completed', result: 'Normal' },
-        // Add more test results as needed
-    ];
-
-    // Generate report content
-    let reportContent = 'Test Results\n\n';
-    testResults.forEach(result => {
-        reportContent += `Test: ${result.test}\nDate: ${result.date}\nStatus: ${result.status}\nResult: ${result.result}\n\n`;
-    });
-
-    // Create a blob and generate a link for download
-    const blob = new Blob([reportContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'test_results.txt'; // Change to your desired filename
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url); // Clean up the URL object
 });
 
 // Modal click outside event (to close modals when clicking outside)

@@ -24,16 +24,7 @@
 
     <div class="content">
         <!-- Sidebar (Initially hidden) -->
-        <aside class="sidebar" id="sidebar">
-            <ul>
-                <li><a href="#patients-section">Patients</a></li>
-                <li><a href="#request-section">Request Test</a></li>
-                <li><a href="#results-section">Test Results</a></li>
-                <li><a href="#appointments-section">Upcoming Appointments</a></li>
-                <li><a href="#profile-section">Profile</a></li>
-            </ul>
-        </aside>
-
+        
         <!-- Main Content -->
         <main>
 
@@ -44,7 +35,7 @@
                     <p><strong>Name:</strong> Dr. Sarah Johnson</p>
                     <p><strong>Email:</strong> sarahjohnson@example.com</p>
                     <p><strong>Phone:</strong> 987-654-3210</p>
-                    <button>Edit Profile</button>
+                    <button id="editProfileBtn">Edit Profile</button>
                 </div>
             </section>
             
@@ -154,6 +145,26 @@
             <p><strong>Name:</strong> <span id="modalPatientName"></span></p>
             <p><strong>Email:</strong> <span id="modalPatientEmail"></span></p>
             <p><strong>Test Status:</strong> <span id="modalTestStatus"></span></p>
+        </div>
+    </div>
+
+    <!-- Modal for Profile Update -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeEditModal">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm">
+                <label for="newName">Name:</label>
+                <input type="text" id="newName" name="newName" required><br>
+
+                <label for="newEmail">Email:</label>
+                <input type="email" id="newEmail" name="newEmail" required><br>
+
+                <label for="newPhone">Phone:</label>
+                <input type="tel" id="newPhone" name="newPhone" required>
+
+                <button type="submit">Edit</button>
+            </form>
         </div>
     </div>
 

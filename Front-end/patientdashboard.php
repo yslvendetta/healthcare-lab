@@ -21,12 +21,6 @@
     </header>
 
     <div class="content">
-        <aside class="sidebar" id="sidebar">
-            <ul>
-                <li><a href="#profile-section">Profile</a></li>
-                <li><a href="#results-section">Test Results</a></li>
-            </ul>
-        </aside>
 
         <main>
             <!-- Profile Section -->

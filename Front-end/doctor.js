@@ -7,7 +7,9 @@ document.getElementById('logoutBtn')?.addEventListener('click', () => {
 
 // Toggle sidebar visibility
 const sidebar = document.getElementById('sidebar');
+const editProfileBtn = document.getElementById('editProfileBtn');
 const menuToggle = document.getElementById('menuToggle');
+
 
 menuToggle?.addEventListener('click', () => {
     if (sidebar.style.left === '0px') {
@@ -16,6 +18,38 @@ menuToggle?.addEventListener('click', () => {
         sidebar.style.left = '0px';  // Show sidebar
     }
 });
+
+const profileModal = document.getElementById('profileModal');
+const closeModal = document.getElementById('closeEditModal');
+
+editProfileBtn?.addEventListener('click', () => {
+    profileModal.style.display = 'block'; // Show modal
+});
+
+
+closeModal?.addEventListener('click', () => {
+    profileModal.style.display = 'none'; // Hide modal
+    document.getElementById('editProfileForm').reset(); // Reset form
+});
+
+
+// Update profile logic
+document.getElementById('editProfileForm')?.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const newName = document.getElementById('newName').value;
+    const newEmail = document.getElementById('newEmail').value;
+    const newPhone = document.getElementById('newPhone').value;
+
+    // Update profile details on the dashboard
+    document.getElementById('profileName').textContent = newName;
+    document.getElementById('profileEmail').textContent = newEmail;
+    document.getElementById('profilePhone').textContent = newPhone;
+
+    profileModal.style.display = 'none'; // Hide modal
+    document.getElementById('editProfileForm').reset(); // Reset form
+});
+
 
 // Function to handle viewing patient details (with a modal)
 function viewPatientDetails(patientId) {
